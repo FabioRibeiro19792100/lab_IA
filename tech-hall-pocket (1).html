@@ -573,6 +573,71 @@
     font-weight: 300;
   }
 
+  /* FACILITACAO */
+  .facilitacao-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0;
+    margin-top: 2rem;
+    border: 1px solid var(--rule);
+  }
+
+  .facilitacao-photo-wrap {
+    border-right: 1px solid var(--rule);
+    min-height: 100%;
+    background: rgba(210,225,242,0.06);
+  }
+
+  .facilitacao-photo {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(100%);
+  }
+
+  .facilitacao-copy {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .facilitacao-card {
+    padding: 2rem;
+    border-bottom: 1px solid var(--rule);
+    background: transparent;
+  }
+
+  .facilitacao-card:last-child {
+    border-bottom: none;
+  }
+
+  .facilitacao-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 1rem;
+  }
+
+  .facilitacao-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.45rem;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+  }
+
+  .facilitacao-bio {
+    font-size: 14px;
+    color: var(--ink-2);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 34ch;
+  }
+
   /* FOOTER */
   footer {
     border-top: 1px solid var(--rule);
@@ -602,6 +667,7 @@
     .overview-grid { grid-template-columns: 1fr; }
     .entregaveis-list { grid-template-columns: 1fr; }
     .formato-grid { grid-template-columns: 1fr; }
+    .facilitacao-grid { grid-template-columns: 1fr; }
     .encontro { grid-template-columns: 60px 1fr; }
     footer { flex-direction: column; gap: 1rem; align-items: flex-start; }
 
@@ -612,6 +678,24 @@
     .diferenciais-row > div:first-child {
       border-right: none !important;
       border-bottom: 1px solid var(--rule);
+    }
+
+    .facilitacao-card {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .facilitacao-card:last-child {
+      border-bottom: none;
+    }
+
+    .facilitacao-photo-wrap {
+      border-right: none;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .facilitacao-photo {
+      min-height: 380px;
     }
   }
 </style>
@@ -936,6 +1020,32 @@
       <div>
         <span style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3);">Público</span>
         <p style="font-size:14px; color:var(--ink-2); font-weight:300; margin-top:4px;">Times corporativos Não exige conhecimento técnico prévio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- FACILITACAO -->
+<section id="facilitacao">
+  <p class="section-label">Facilitação</p>
+  <p class="caput">O lab.IA é conduzido por lideranças da Mastertech com trajetória em tecnologia, negócios e formação de pessoas.</p>
+
+  <div class="facilitacao-grid">
+    <div class="facilitacao-photo-wrap">
+      <img src="/FotoFabioCamila.jpeg" alt="Camila Achutti e Fabio Ribeiro" class="facilitacao-photo">
+    </div>
+    <div class="facilitacao-copy">
+      <div class="facilitacao-card">
+        <p class="facilitacao-role">Quem conduz</p>
+        <h3 class="facilitacao-name">Camila Achutti</h3>
+        <p class="facilitacao-bio">Mestrado em Ciências da Computação pela USP. Sócia da Mastertech e idealizadora da SOMAS, ONG de inclusão digital.</p>
+      </div>
+      <div class="facilitacao-card">
+        <p class="facilitacao-role">Quem conduz</p>
+        <h3 class="facilitacao-name">Fabio Ribeiro</h3>
+        <p class="facilitacao-bio">Pós-graduação em Finanças pelo Insper. Sócio da Mastertech e idealizador da SOMAS, ONG de inclusão digital.</p>
       </div>
     </div>
   </div>
