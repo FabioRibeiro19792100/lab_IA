@@ -1,23 +1,38 @@
 import { useEffect, useMemo } from 'react'
 import sourceHtml from '../tech-hall-pocket (1).html?raw'
+import sourceHtmlEn from '../tech-hall-pocket.en.html?raw'
 
 function extractDocumentParts(html) {
   const parser = new DOMParser()
   const doc = parser.parseFromString(html, 'text/html')
   const style = doc.querySelector('style')?.textContent ?? ''
   const body = doc.body.innerHTML
+  const lang = doc.documentElement.lang || 'pt-BR'
+  const title = doc.title || 'lab.IA — Mastertech'
 
-  return { style, body }
+  return { style, body, lang, title }
 }
 
 export default function App() {
-  const { style, body } = useMemo(() => extractDocumentParts(sourceHtml), [])
+  const isEnglish = useMemo(() => {
+    const params = new URLSearchParams(window.location.search)
+    return params.get('lang') === 'en' || window.location.pathname.endsWith('/en')
+  }, [])
+
+  const { style, body, lang, title } = useMemo(
+    () => extractDocumentParts(isEnglish ? sourceHtmlEn : sourceHtml),
+    [isEnglish],
+  )
 
   useEffect(() => {
+    const previousLang = document.documentElement.lang
+    const previousTitle = document.title
     const styleTag = document.createElement('style')
     styleTag.setAttribute('data-lab-ia-style', 'true')
     styleTag.textContent = style
     document.head.appendChild(styleTag)
+    document.documentElement.lang = lang
+    document.title = title
 
     const fontPreconnects = [
       'https://fonts.googleapis.com',
@@ -42,11 +57,13 @@ export default function App() {
     document.head.appendChild(fontStylesheet)
 
     return () => {
+      document.documentElement.lang = previousLang
+      document.title = previousTitle
       styleTag.remove()
       fontStylesheet.remove()
       createdLinks.forEach((link) => link.remove())
     }
-  }, [style])
+  }, [lang, style, title])
 
   useEffect(() => {
     const hamburger = document.getElementById('hamburger')
